@@ -106,6 +106,8 @@ func (c *Client) Do(r *RestRequest) (status int, err error) {
 		log.Println(err)
 		return
 	}
+	defer resp.Body.Close()
+
 	status = resp.StatusCode
 	var data []byte
 	data, err = ioutil.ReadAll(resp.Body)
